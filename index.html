@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Window</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <!-- Navbar Section ------------------ -->
+    <header class="w-full bg-[#C6BDBD]">
+        <nav class="w-11/12 mx-auto py-5 flex justify-between items-center">
+            <div class="flex items-center">
+                <h2 class="font-semibold">English</h2>
+                <div>
+                    <img src="assets/logo.png" alt="">
+                </div>
+                <h2 class="font-semibold">জানালা</h2>
+            </div>
+            <div class="flex gap-2">
+                <!-- To make the icon turn white on hover like the text 
+                 group → allows child elements to react to parent hover
+                group-hover:* → applies style when button is hovered
+                invert + brightness-0 → turns the icon into white-->
+
+                <!-- 1st Button -->
+                <button class="btn btn-outline border-1 btn-primary group">
+                    <span><img src="assets/fa-circle-question.png"
+                            class="transition group-hover:invert group-hover:brightness-0"></span>
+                    FAQ
+                </button>
+
+                <!-- 2nd Button -->
+                <button class="btn btn-outline btn-primary group">
+                    <img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0">
+                    Learn
+                </button>
+
+                <!-- 3rd Button -->
+                <button class="btn btn-outline border-1 btn-primary group">
+                    <span><img src="assets/fa-arrow-right-from-bracket.png"
+                            class="transition group-hover:invert group-hover:brightness-0"></span>
+                    Logout
+                </button>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>
