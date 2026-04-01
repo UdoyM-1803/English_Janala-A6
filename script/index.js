@@ -10,7 +10,7 @@ const loadLessonButtons = () => {
 
 
 
-
+// For displaying the Learning Buttons.
 function displayLearningButtons(levels) {
     // Get the Container...
     const buttonContainer = document.getElementById("lesson-button-container");
