@@ -8,11 +8,18 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        .hide-me {
+            visibility: hidden;
+        }
+    </style>
+
 </head>
 
 <body>
     <!-- Navbar Section ------------------ -->
-    <header class="w-full bg-[#C6BDBD] sticky top-0 z-50">
+    <header class="hide-me w-full bg-[#C6BDBD] sticky top-0 z-50">
         <nav class="w-11/12 mx-auto py-5 flex justify-between items-center">
             <div class="flex items-center">
                 <h2 class="font-semibold md:text-xl">English</h2>
@@ -29,16 +36,17 @@
 
                 <!-- 1st Button -->
                 <a href="#faq-section"><button class="btn btn-outline border-1 btn-primary border-2 group">
-                    <span><img src="assets/fa-circle-question.png"
-                            class="transition group-hover:invert group-hover:brightness-0"></span>
-                    FAQ
-                </button></a>
+                        <span><img src="assets/fa-circle-question.png"
+                                class="transition group-hover:invert group-hover:brightness-0"></span>
+                        FAQ
+                    </button></a>
 
                 <!-- 2nd Button -->
                 <a href="#learn-section"><button class="btn btn-outline btn-primary border-2 group">
-                    <img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0">
-                    Learn
-                </button></a>
+                        <img src="assets/fa-book-open.png"
+                            class="transition group-hover:invert group-hover:brightness-0">
+                        Learn
+                    </button></a>
 
                 <!-- 3rd Button -->
                 <button class="btn btn-outline border-1 btn-primary border-2 group">
@@ -58,19 +66,23 @@
                 বাড়াতে
                 চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
             <div class="flex flex-col gap-5">
-                <input type="text" class="input" placeholder="Enter your Name" />
+                <fieldset class="fieldset">
+                    <input id="name-field" type="text" class="input" placeholder="Enter your Name" />
 
-                <input type="password" class="input" placeholder="Enter Login Code(123456)" />
+                    <input id="password-field" type="password" class="input" placeholder="Enter Login Code(123456)"
+                        required />
+                </fieldset>
             </div>
 
-            <button class="btn btn-primary my-6">Get Started</button>
+            <button id="get-in-btn" class="btn btn-primary my-6">Get Started</button>
         </div>
         <img class="md:w-1/2 mx-auto" src="assets/hero-student.png" alt="">
     </section>
 
     <!-- Lessons Part ***************************** -->
-    <section id="learn-section" class="w-11/12 mx-auto flex flex-col gap-3 py-10">
-        <h1 class="text-4xl font-bold text-center pt-15"><span class="text-[#00BCFF]">Let's</span> Learn Vocabularies</h1>
+    <section id="learn-section" class="hide-me w-11/12 mx-auto flex flex-col gap-3 py-10">
+        <h1 class="text-4xl font-bold text-center pt-15"><span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+        </h1>
 
         <!-- Lessons Buttons Container...... -->
         <div id="lesson-button-container" class="py-10 grid mx-auto gap-3 grid-cols-2 md:grid-cols-4 lg:flex">
@@ -83,7 +95,7 @@
     </section>
 
     <!-- FAQ Section ****************************** -->
-    <section id="faq-section" class="w-11/12 mx-auto py-20">
+    <section id="faq-section" class="hide-me w-11/12 mx-auto py-20">
         <h1 class="text-4xl font-bold text-center"><span class="text-[#00BCFF]">Frequently</span> Asked Questions</h1>
 
         <div class="mt-10">
@@ -138,35 +150,38 @@
     </section>
 
     <!-- Footer Part ****************************** -->
-    <hr class="text-gray-300 font-semibold mt-10">
-    <footer class="py-12 px-5">
-        <div class="w-11/12 mx-auto md:flex md:items-center md:justify-between">
-            <div>
-                <div class="flex items-center">
-                    <h2 class="font-semibold md:text-xl">English</h2>
-                    <div>
-                        <img src="assets/logo.png" alt="">
+    <footer class="hide-me">
+        <hr class="text-gray-300 font-semibold mt-10">
+        <div class="py-12 px-5">
+            <div class="w-11/12 mx-auto md:flex md:items-center md:justify-between">
+                <div>
+                    <div class="flex items-center">
+                        <h2 class="font-semibold md:text-xl">English</h2>
+                        <div>
+                            <img src="assets/logo.png" alt="">
+                        </div>
+                        <h2 class="font-semibold md:text-xl">জানালা</h2>
                     </div>
-                    <h2 class="font-semibold md:text-xl">জানালা</h2>
+                    <h1 class="text-xl mt-5 mb-2">ইংরেজি শিখুন সহজে</h1>
+                    <p class="text-gray-600">Providing ED-Tech Applications since 2025</p>
                 </div>
-                <h1 class="text-xl mt-5 mb-2">ইংরেজি শিখুন সহজে</h1>
-                <p class="text-gray-600">Providing ED-Tech Applications since 2025</p>
-            </div>
-            <div class="pt-5 md:pt-0">
-                <p class="text-sm text-gray-600 mb-4 font-bold">FOLLOW US</p>
-                <div class="flex items-center gap-2">
-                    <img src="assets/fb-thumb.png" alt="">
-                    <img src="assets/youtube-thumb.png" alt="">
-                    <img src="assets/instagram-thumb.png" alt="">
-                    <img src="assets/github-thumb.png" alt="">
+                <div class="pt-5 md:pt-0">
+                    <p class="text-sm text-gray-600 mb-4 font-bold">FOLLOW US</p>
+                    <div class="flex items-center gap-2">
+                        <img src="assets/fb-thumb.png" alt="">
+                        <img src="assets/youtube-thumb.png" alt="">
+                        <img src="assets/instagram-thumb.png" alt="">
+                        <img src="assets/github-thumb.png" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </footer>
 
 
     <script src="script/index.js"></script>
+    <script src="script/get-in.js"></script>
 </body>
 
 </html>
