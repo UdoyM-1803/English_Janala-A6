@@ -8,6 +8,15 @@ const loadLessonButtons = () => {
         .then(information => displayLearningButtons(information.data))
 }
 
+// Fetched API for bring those lessons
+const loadLessons = (level) => {
+    const url = `https://openapi.programming-hero.com/api/level/${level}`
+
+    fetch(url)
+        .then(res => res.json())
+        .then(info => displayLessons(info.data))
+}
+
 
 
 // For displaying the Learning Buttons.
@@ -21,12 +30,48 @@ function displayLearningButtons(levels) {
 
         // Creates Buttons.......
         buttonsDiv.innerHTML = `
-        <button id="btn-${level.id}" class="btn btn-outline border-1 btn-primary border-2 group font-semibold"><span><img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0"></span>
+        <button onclick="loadLessons(${level.level_no})" id="btn-${level.id}" class="btn btn-outline border-1 btn-primary border-2 group font-semibold"><span><img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0"></span>
         Lesson -${level.level_no}
         </button>
         `;
         buttonContainer.append(buttonsDiv);
     }
 }
+
+
+// Function for displaying Lessons ------
+function displayLessons(info) {
+
+    console.log(info);
+    // Showing Details to Lesson Cards---------
+    const lessonsContainer = document.getElementById("lesson-container");
+
+    lessonsContainer.innerHTML = "";
+
+    for (let details of info) {
+        const lessonsDiv = document.createElement("div");
+
+        lessonsDiv.innerHTML = `
+        <div class="card bg-base-100 h-80">
+            <div class="card-body">
+
+                <h2 class="text-2xl text-center font-bold">${details.word}</h2>
+
+                <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
+
+                <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
+
+                <div class="mt-7 flex justify-between">
+                    <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
+                    <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                </div>
+            </div>
+        </div>
+        `;
+        lessonsContainer.append(lessonsDiv)
+    }
+}
+
+
 
 loadLessonButtons();
