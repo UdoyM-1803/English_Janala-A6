@@ -47,17 +47,17 @@
                 invert + brightness-0 → turns the icon into white-->
 
                 <!-- 1st Button -->
-                <button onclick="scrollToSection('faq-section')" class="btn btn-outline border-1 btn-primary border-2 group">
-                        <span><img src="assets/fa-circle-question.png"
-                                class="transition group-hover:invert group-hover:brightness-0"></span>
-                        FAQ
+                <button onclick="scrollToSection('faq-section')"
+                    class="btn btn-outline border-1 btn-primary border-2 group">
+                    <span><img src="assets/fa-circle-question.png"
+                            class="transition group-hover:invert group-hover:brightness-0"></span>
+                    FAQ
                 </button>
 
                 <!-- 2nd Button -->
                 <button onclick="scrollToSection('learn-section')" class="btn btn-outline btn-primary border-2 group">
-                        <img src="assets/fa-book-open.png"
-                            class="transition group-hover:invert group-hover:brightness-0">
-                        Learn
+                    <img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0">
+                    Learn
                 </button>
 
                 <!-- 3rd Button -->
@@ -71,7 +71,8 @@
     </header>
 
     <!-- The Banner Part ************************** -->
-    <section id="banner-section" class="w-11/12 mx-auto flex flex-col-reverse md:flex-row md:justify-between md:items-center py-5">
+    <section id="banner-section"
+        class="w-11/12 mx-auto flex flex-col-reverse md:flex-row md:justify-between md:items-center py-5">
         <div class="md:w-1/2 mx-auto">
             <h1 class="font-bold text-5xl"><span class="text-[#00BCFF]">English</span> is Easy!!</h1>
             <p class="font-medium my-5">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা
@@ -95,7 +96,7 @@
     <dialog id="word-details" class="modal">
         <div class="modal-box p-5">
             <div id="word-details-container" class="p-4 flex flex-col gap-4 border-1 border-gray-200 rounded-lg">
-                
+
             </div>
 
             <!-- Used Justify for aligned at left the "Complete Learning" buttons-->
@@ -117,6 +118,15 @@
         <div id="lesson-button-container" class="py-10 grid mx-auto gap-3 grid-cols-2 md:grid-cols-4 lg:flex">
 
         </div>
+
+        <!-- Loader Area------------------------------- -->
+        <section id="loader" class="text-center py-10 hidden">
+            <span class="loading loading-dots loading-xl"></span>
+        </section>
+
+        <!-- ########################################## -->
+
+
         <div id="lesson-container"
             class="mx-auto bg-[#C6BDBD] w-full p-3 rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
 

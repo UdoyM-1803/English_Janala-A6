@@ -1,6 +1,7 @@
 
 // Fetched the first API
 const loadLessonButtons = () => {
+    showLoader();
     fetch("https://openapi.programming-hero.com/api/levels/all")
         //2. Convert promise to json
         .then(res => res.json())
@@ -19,6 +20,7 @@ const removeActiveClass = () => {
 
 // Fetched API for bring those lessons
 const loadLessons = (level, id) => {
+    showLoader();
     const url = `https://openapi.programming-hero.com/api/level/${level}`
 
     fetch(url)
@@ -35,6 +37,16 @@ const loadLessons = (level, id) => {
             displayLessons(info.data)
         })
 
+}
+
+const showLoader = () => {
+    document.getElementById("loader").classList.remove("hidden");
+    document.getElementById("lesson-container").classList.add("hidden");
+}
+
+const hideLoader = () => {
+    document.getElementById("loader").classList.add("hidden");
+    document.getElementById("lesson-container").classList.remove("hidden");
 }
 
 // Shows a Modals When the Information button is clicked...............
@@ -90,12 +102,12 @@ function displayLearningButtons(levels) {
         </button>
         `;
         buttonContainer.append(buttonsDiv);
+        hideLoader();
     }
 }
 
 // Function for displaying Lessons ------
 function displayLessons(info) {
-
 
     // Showing Details to Lesson Cards---------
     const lessonsContainer = document.getElementById("lesson-container");
@@ -120,6 +132,7 @@ function displayLessons(info) {
             </div>
         `
         lessonsContainer.append(lessonsDiv1)
+        hideLoader();
     }
 
     // If there is Content in Info ------------
@@ -151,6 +164,7 @@ function displayLessons(info) {
         `;
 
         lessonsContainer.append(lessonsDiv2)
+        hideLoader();
         }
     }
 }
