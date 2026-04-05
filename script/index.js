@@ -8,15 +8,34 @@ const loadLessonButtons = () => {
         .then(information => displayLearningButtons(information.data))
 }
 
+// Remove the Active Class from all buttons
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName("active");
+
+    for (let button of buttons) {
+        button.classList.remove("active");
+    }
+}
+
 // Fetched API for bring those lessons
-const loadLessons = (level) => {
+const loadLessons = (level, id) => {
     const url = `https://openapi.programming-hero.com/api/level/${level}`
 
     fetch(url)
         .then(res => res.json())
-        .then(info => displayLessons(info.data))
-}
+        .then(info => {
 
+            removeActiveClass();
+
+            const clickedButton = document.getElementById(`btn-${id}`);
+
+            clickedButton.classList.add("active");
+
+
+            displayLessons(info.data)
+        })
+    
+}
 
 
 // For displaying the Learning Buttons.
@@ -30,7 +49,7 @@ function displayLearningButtons(levels) {
 
         // Creates Buttons.......
         buttonsDiv.innerHTML = `
-        <button onclick="loadLessons(${level.level_no})" id="btn-${level.id}" class="btn btn-outline border-1 btn-primary border-2 group font-semibold"><span><img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0"></span>
+        <button onclick="loadLessons(${level.level_no},${level.id})" id="btn-${level.id}" class="btn btn-outline border-1 btn-primary border-2 group font-semibold"><span><img src="assets/fa-book-open.png" class="transition group-hover:invert group-hover:brightness-0"></span>
         Lesson -${level.level_no}
         </button>
         `;
@@ -42,7 +61,6 @@ function displayLearningButtons(levels) {
 // Function for displaying Lessons ------
 function displayLessons(info) {
 
-    console.log(info);
     // Showing Details to Lesson Cards---------
     const lessonsContainer = document.getElementById("lesson-container");
 
