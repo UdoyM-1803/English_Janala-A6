@@ -34,7 +34,7 @@ const loadLessons = (level, id) => {
 
             displayLessons(info.data)
         })
-    
+
 }
 
 
@@ -61,32 +61,62 @@ function displayLearningButtons(levels) {
 // Function for displaying Lessons ------
 function displayLessons(info) {
 
+
     // Showing Details to Lesson Cards---------
     const lessonsContainer = document.getElementById("lesson-container");
 
     lessonsContainer.innerHTML = "";
 
-    for (let details of info) {
-        const lessonsDiv = document.createElement("div");
+    // If there is NO content in Lessons --------
+    if (info.length == 0) {
+        const lessonsDiv1 = document.createElement("div");
 
-        lessonsDiv.innerHTML = `
-        <div class="card bg-base-100 h-80">
-            <div class="card-body">
+        // To move the content to the middle of the lessonsContainer we have to remove "grid" and add "flex"-------------------------------
+        lessonsContainer.classList.remove("grid"); 
+        lessonsContainer.classList.add("flex", "justify-center", "items-center", "min-h-[300px]");
 
-                <h2 class="text-2xl text-center font-bold">${details.word}</h2>
 
-                <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
+        lessonsDiv1.innerHTML = `
+            <div class="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center min-h-[300px]">
 
-                <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
+                <img src="assets/alert-error.png" alt="">
+                <p class="text-sm text-center my-2">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                <p class="text-3xl text-center text-black font-bold">নেক্সট Lesson এ যান</p>
+            </div>
+        `
+        lessonsContainer.append(lessonsDiv1)
+    }
 
-                <div class="mt-7 flex justify-between">
-                    <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
-                    <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+    // If there is Content in Info ------------
+    else {
+        for (let details of info) {
+            const lessonsDiv2 = document.createElement("div");
+
+            // To aligned the cards we have to grid all the items and remove the "flex"------
+            lessonsContainer.classList.remove("flex", "justify-center", "items-center", "min-h-[300px]");
+            lessonsContainer.classList.add("grid"); // remove grid
+
+
+            lessonsDiv2.innerHTML = `
+            <div class="card bg-base-100 h-80">
+                <div class="card-body">
+
+                    <h2 class="text-2xl text-center font-bold">${details.word}</h2>
+
+                    <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
+
+                    <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
+
+                    <div class="mt-7 flex justify-between">
+                        <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
+                        <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
         `;
-        lessonsContainer.append(lessonsDiv)
+
+        lessonsContainer.append(lessonsDiv2)
+        }
     }
 }
 
