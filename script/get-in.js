@@ -14,15 +14,19 @@ document.getElementById("get-in-btn")
         // Name and Password Validation .............
         if (name.length !== 0) {
             if (password === "123456") {
-                const hideElements = document.querySelectorAll('.hide-me');
 
+                const hideElements = document.querySelectorAll('.hide-me');
+                
                 hideElements.forEach(el => {
                     el.classList.remove('hide-me');
                 })
-
+                
                 document.getElementById("name-field").value = '';
                 document.getElementById("password-field").value = '';
+
+                document.getElementById("banner-section").classList.add("hidden");
                 
+                alert("Welcome, You have entered Successfully");
             }
             else {
                 alert("Enter the Correct Login Code...");

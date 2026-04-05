@@ -47,7 +47,6 @@ const openModal = (id) => {
     fetch(url2)
         .then(res => res.json())
         .then(particular => {
-            console.log(particular.data.synonyms)
 
             const modalContainer = document.getElementById("word-details-container");
 
@@ -75,7 +74,6 @@ const openModal = (id) => {
     )
 }
 
-
 // For displaying the Learning Buttons.
 function displayLearningButtons(levels) {
     // Get the Container...
@@ -94,7 +92,6 @@ function displayLearningButtons(levels) {
         buttonContainer.append(buttonsDiv);
     }
 }
-
 
 // Function for displaying Lessons ------
 function displayLessons(info) {
