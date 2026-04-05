@@ -20,6 +20,7 @@
             background-color: blue;
             color: white;
         }
+
         .active img {
             filter: invert(1) brightness(10);
         }
@@ -30,7 +31,7 @@
 <body>
     <!-- Navbar Section ------------------ -->
     <header class="hide-me w-full bg-[#C6BDBD] sticky top-0 z-50">
-        
+
         <nav class="w-11/12 mx-auto py-5 flex justify-between items-center">
             <div class="flex items-center">
                 <h2 class="font-semibold md:text-xl">English</h2>
@@ -89,6 +90,26 @@
         </div>
         <img class="md:w-1/2 mx-auto" src="assets/hero-student.png" alt="">
     </section>
+
+
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="word-details" class="modal">
+        <div class="modal-box p-5">
+            <div id="word-details-container" class="p-4 flex flex-col gap-4 border-1 border-gray-200 rounded-lg">
+                
+            </div>
+
+            <!-- Used Justify for aligned at left the "Complete Learning" buttons-->
+            <div class="modal-action justify-start">
+                <form method="dialog">
+
+                    <button class="btn btn-primary">Complete Learning</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
 
     <!-- Lessons Part ***************************** -->
     <section id="learn-section" class="hide-me w-11/12 mx-auto flex flex-col gap-3 py-10">

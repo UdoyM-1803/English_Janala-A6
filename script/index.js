@@ -37,6 +37,46 @@ const loadLessons = (level, id) => {
 
 }
 
+// Shows a Modals When the Information button is clicked...............
+const openModal = (id) => {
+
+    document.getElementById("word-details").showModal()
+
+    const url2 = `https://openapi.programming-hero.com/api/word/${id}`
+
+    fetch(url2)
+        .then(res => res.json())
+        .then(particular => {
+            console.log(particular.data.synonyms)
+
+            const modalContainer = document.getElementById("word-details-container");
+
+            modalContainer.innerHTML = `
+            <h2 class="text-3xl font-bold">${particular.data.word} (${particular.data.pronunciation})</h2>
+            <div>
+                <h4 class="text-xl font-semibold">Meaning</h4>
+                <p class="text-lg text-gray-700">${particular.data.meaning}</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold">Example</h4>
+                <p class="text-lg text-gray-700">${particular.data.sentence}</p>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-2">সমার্থক শব্দ গুলো</h4>
+                <div>
+                    ${particular.data.synonyms.map(item => `
+                        <button class="btn bg-[#D7E4EF] border-none">${item}</button>     
+                    `).join("")}
+                </div>
+            </div>
+            `
+        }
+    )
+}
+
+/* <button class="btn bg-[#D7E4EF] border-none">excited</button> */
+
 
 // For displaying the Learning Buttons.
 function displayLearningButtons(levels) {
@@ -108,7 +148,7 @@ function displayLessons(info) {
                     <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
 
                     <div class="mt-7 flex justify-between">
-                        <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
+                        <button onclick="openModal(${details.id})" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
                         <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
                     </div>
                 </div>
@@ -119,7 +159,6 @@ function displayLessons(info) {
         }
     }
 }
-
 
 
 loadLessonButtons();
