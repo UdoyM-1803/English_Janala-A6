@@ -75,8 +75,6 @@ const openModal = (id) => {
     )
 }
 
-/* <button class="btn bg-[#D7E4EF] border-none">excited</button> */
-
 
 // For displaying the Learning Buttons.
 function displayLearningButtons(levels) {
