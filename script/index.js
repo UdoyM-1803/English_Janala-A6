@@ -54,7 +54,7 @@ const pronounceWord = (word) => {
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = 'en-EN';
     window.speechSynthesis.speak(utterance);
-} 
+}
 
 // Shows a Modals When the Information button is clicked...............
 const openModal = (id) => {
@@ -69,26 +69,52 @@ const openModal = (id) => {
 
             const modalContainer = document.getElementById("word-details-container");
 
-            modalContainer.innerHTML = `
-            <h2 class="text-3xl font-bold">${particular.data.word} (${particular.data.pronunciation})</h2>
-            <div>
-                <h4 class="text-xl font-semibold">Meaning</h4>
-                <p class="text-lg text-gray-700">${particular.data.meaning}</p>
-            </div>
-            <div>
-                <h4 class="text-xl font-semibold">Example</h4>
-                <p class="text-lg text-gray-700">${particular.data.sentence}</p>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold mb-2">সমার্থক শব্দ গুলো</h4>
+            if (particular.data.meaning === null || particular.data.meaning === undefined) {
+                
+                modalContainer.innerHTML = `
+                <h2 class="text-3xl font-bold">${particular.data.word} (${particular.data.pronunciation})</h2>
                 <div>
-                    ${particular.data.synonyms.map(item => `
-                        <button class="btn bg-[#D7E4EF] border-none">${item}</button>     
-                    `).join("")}
+                    <h4 class="text-xl font-semibold">Meaning</h4>
+                    <p class="text-lg text-gray-700">অর্থ খুঁজে পাওয়া যায়নি</p>
                 </div>
-            </div>
-            `
+                <div>
+                    <h4 class="text-xl font-semibold">Example</h4>
+                    <p class="text-lg text-gray-700">${particular.data.sentence}</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">সমার্থক শব্দ গুলো</h4>
+                    <div>
+                        ${particular.data.synonyms.map(item => `
+                            <button class="btn bg-[#D7E4EF] border-none">${item}</button>     
+                        `).join("")}
+                    </div>
+                </div>
+                `
+            }
+
+            else {
+                modalContainer.innerHTML = `
+                <h2 class="text-3xl font-bold">${particular.data.word} (${particular.data.pronunciation})</h2>
+                <div>
+                    <h4 class="text-xl font-semibold">Meaning</h4>
+                    <p class="text-lg text-gray-700">${particular.data.meaning}</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold">Example</h4>
+                    <p class="text-lg text-gray-700">${particular.data.sentence}</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">সমার্থক শব্দ গুলো</h4>
+                    <div>
+                        ${particular.data.synonyms.map(item => `
+                            <button class="btn bg-[#D7E4EF] border-none">${item}</button>     
+                        `).join("")}
+                    </div>
+                </div>
+                `
+            }
         }
     )
 }
@@ -126,7 +152,7 @@ function displayLessons(info) {
         const lessonsDiv1 = document.createElement("div");
 
         // To move the content to the middle of the lessonsContainer we have to remove "grid" and add "flex"-------------------------------
-        lessonsContainer.classList.remove("grid"); 
+        lessonsContainer.classList.remove("grid");
         lessonsContainer.classList.add("flex", "justify-center", "items-center", "min-h-[300px]");
 
 
@@ -152,26 +178,48 @@ function displayLessons(info) {
             lessonsContainer.classList.add("grid"); // remove grid
 
 
-            lessonsDiv2.innerHTML = `
-            <div class="card bg-base-100 h-80">
-                <div class="card-body">
+            if (details.meaning === null || details.meaning === undefined) {
+                lessonsDiv2.innerHTML = `
+                <div class="card bg-base-100 h-80">
+                    <div class="card-body">
 
-                    <h2 class="text-2xl text-center font-bold">${details.word}</h2>
+                        <h2 class="text-2xl text-center font-bold">${details.word}</h2>
 
-                    <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
+                        <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
 
-                    <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
+                        <p class="font-semibold text-xl text-center text-gray-500">অর্থ খুঁজে পাওয়া যায়নি/${details.pronunciation}</p>
 
-                    <div class="mt-7 flex justify-between">
-                        <button onclick="openModal(${details.id})" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
-                        <button onclick="pronounceWord('${details.word}')" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                        <div class="mt-7 flex justify-between">
+                            <button onclick="openModal(${details.id})" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
+                            <button onclick="pronounceWord('${details.word}')" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+                `;
+            }
 
-        lessonsContainer.append(lessonsDiv2)
-        hideLoader();
+            else {
+                lessonsDiv2.innerHTML = `
+                <div class="card bg-base-100 h-80">
+                    <div class="card-body">
+
+                        <h2 class="text-2xl text-center font-bold">${details.word}</h2>
+
+                        <p class="font-medium text-sm text-center">Meaning/Pronunciation</p>
+
+                        <p class="font-semibold text-xl text-center text-gray-500">${details.meaning}/${details.pronunciation}</p>
+
+                        <div class="mt-7 flex justify-between">
+                            <button onclick="openModal(${details.id})" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
+                            <button onclick="pronounceWord('${details.word}')" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            lessonsContainer.append(lessonsDiv2)
+            hideLoader();
         }
     }
 }
