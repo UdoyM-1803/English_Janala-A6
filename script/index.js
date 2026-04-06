@@ -49,6 +49,13 @@ const hideLoader = () => {
     document.getElementById("lesson-container").classList.remove("hidden");
 }
 
+// A function to Pronounce word by Speech Synthesis
+const pronounceWord = (word) => {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-EN';
+    window.speechSynthesis.speak(utterance);
+} 
+
 // Shows a Modals When the Information button is clicked...............
 const openModal = (id) => {
 
@@ -157,7 +164,7 @@ function displayLessons(info) {
 
                     <div class="mt-7 flex justify-between">
                         <button onclick="openModal(${details.id})" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-circle-info"></i></button>
-                        <button class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
+                        <button onclick="pronounceWord('${details.word}')" class="btn bg-[#d6e7f4]"><i class="fa-solid fa-volume-up"></i></button>
                     </div>
                 </div>
             </div>
